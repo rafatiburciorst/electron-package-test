@@ -1,27 +1,43 @@
 {
   "name": "electron-quick-start",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "start": "electron .",
+    "build": "electron-builder -m",
+    "release": "electron-builder -m -p 'onTagOrDraft'"
   },
   "repository": "https://github.com/rafatiburciorst/electron-package-test.git",
   "author": "Rafael",
   "license": "CC0-1.0",
   "devDependencies": {
-    "@electron-forge/cli": "^6.4.2",
-    "@electron-forge/maker-deb": "^6.4.2",
-    "@electron-forge/maker-rpm": "^6.4.2",
-    "@electron-forge/maker-squirrel": "^6.4.2",
-    "@electron-forge/maker-zip": "^6.4.2",
-    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
-    "electron": "^26.2.3"
+    "electron": "^26.2.3",
+    "electron-builder": "^24.6.4"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
-    "update-electron-app": "^2.0.1"
+    "dotenv": "^16.3.1",
+    "electron-log": "^4.4.8",
+    "electron-updater": "^6.1.4"
+  },
+  "build": {
+    "appId": "com.arthwind.electron-quick-start",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "rafatiburciorst",
+        "repo": "electron-package-test"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "zip",
+      "certificateFile": "private/certificate.p12",
+      "certificatePassword": "",
+      "verifyUpdateCodeSignature": false
+    }
   }
 }
